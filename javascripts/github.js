@@ -1,6 +1,4 @@
-function getLatestReleaseInfo(elem) {
-        var project = elem.attr("data-repo");
-
+function getLatestReleaseInfo(project) {
         $.getJSON("https://api.github.com/repos/cc-translators/"+project+"/releases/latest").done(function (release) {
             console.log(release);
         });
@@ -8,7 +6,8 @@ function getLatestReleaseInfo(elem) {
 
 
 function getAllReleaseInfos() {
-    $(".latest-release").each(function (e) {
-        getLatestReleaseInfo(e);
+    $(".latest-release").each(function () {
+        var project = $(this).attr("data-repo");
+        getLatestReleaseInfo(project);
     });
 }
