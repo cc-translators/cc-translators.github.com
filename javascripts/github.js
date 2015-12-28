@@ -1,6 +1,7 @@
 function getLatestReleaseInfo(project) {
         $.getJSON("https://api.github.com/repos/cc-translators/"+project+"/releases/latest").done(function (release) {
-            console.log(release);
+            var asset_url = release.assets[0].browser_download_url;
+            $(".latest-release[data-repo='"+project+"']").attr("href", asset_url);
         });
     }
 
